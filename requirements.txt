@@ -1,0 +1,17 @@
+uvicorn[standard]
+fastapi
+pydantic
+sqlalchemy
+databases[asyncpg]
+asyncpg
+alembic
+python-dotenv
+pytest
+pytest-asyncio
+httpx
+pydantic[email]
+passlib[bcrypt]
+python-jose
+pydantic-settings
+sqlmodel
+
