@@ -30,7 +30,7 @@ async def register_user(user_data: UserCreate, db:AsyncSession=Depends(get_db)):
 @router.post("/login", response_model=Token)
 async def login_user(
     form_data: Annotated[OAuth2PasswordRequestForm, Depends()], db:AsyncSession = Depends(get_db)):
-    result = await db.execute(select(User).where(User.email == form_data.email))
+    result = await db.execute(select(User).where(User.email == form_data.username))
     user = result.scalars().first()
 
     if not user or not verify_password(form_data.password, user.hashed_password):

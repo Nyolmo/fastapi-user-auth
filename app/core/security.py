@@ -22,5 +22,9 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
     return pwd_context.verify(plain_password, hashed_password)
 
 def get_password_hash(password:str) ->str:
-    return pwd_context.hash(password)
-
+    if not password:
+        raise ValueError("Password cannot be empty or None")
+    # Truncate to 72 bytes
+    password_bytes = password.encode("utf-8")[:72]
+    password_truncated = password_bytes.decode("utf-8", errors="ignore")
+    return pwd_context.hash(password_truncated)
